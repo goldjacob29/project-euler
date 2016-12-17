@@ -10,9 +10,6 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 p1 = sum [x | x <- [1..999], x `mod` 3 == 0 || x `mod` 5 == 0]
 ```
 
-This problem is pretty straightforward, taking advantage of list comprehensions.
-
-
 Problem 4:
 
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
