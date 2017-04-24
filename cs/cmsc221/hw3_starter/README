@@ -1,0 +1,90 @@
+README: Homework 3, CMSC 22100, Spring 2017
+
+CONTENTS OF THIS DIRECTORY 
+
+This zip file contains 12 files, in addition to this README:
+
+Testing infrastructure:
+- check.sml
+
+Compilation management:
+- sources.cm
+
+Terms in the NBT language:
+- ast.sml
+
+Compiler components:
+- read.sml
+- token.sml
+- scan.sml
+- parse.sml
+- static-check.sml
+- inline.sml
+- eval.sml
+- compile.sml
+- unparse.sml
+
+THE ULC LANGUAGE
+
+"ULC" stands for the untyped lambda calculus.
+
+The concrete syntax of terms in ULC is as follows:
+
+t ::= x       (* variables *)
+    | {x . t} (* abstractions *)
+    | (t t)   (* applications *)
+
+An ULC program consists of zero or more abbreviations (defined below),
+followed by one main term.
+
+An abbreviation consists of an abbreviation name, the left arrow token
+<-, and an abstraction. For example:
+
+Tru <- {t . {f . t}}
+
+Variables in abstractions must start with a lowercase letter, and
+consist of zero or more letters and numbers after that. For
+example, x, xx, xyz, xYZ, x0, and tmp22 are all legal variable
+names.
+
+Abbreviation names must start with an uppercase letters, and consist
+of zero or more letters and numbers after that. X, A, Tru, TRU, And,
+and Unless123 are all legal abbreviation names.
+
+For example, the file "and.ulc" might contain the following legal
+program:
+
+Tru <- {t . {f . t}} 
+Fls <- {t . {f . f}} 
+And <- {b . {c . ((b c) Fls)}} 
+((And Tru) Tru)
+
+Please note that whitespace is not meaningful in ULC syntax, except
+insofar as it separates tokens from one another. No particular
+line-breaking or alignment scheme is necessary for programs to be
+legal. Use the built-in function Char.isSpace to idenfity whitespace.
+
+YOUR ASSIGNMENT
+
+Please first browse the files given to you. To cut down on the (not
+inconsiderable) number of files in this assignment, signatures appear
+in place directly at each structure declaration (rather than appearing
+in separate files). The lecture on Tuesdau, April 18, taken together
+with the signature specifications and comments, should be enough to
+get you started on this work. Please note that you need not complete
+the compiler components in any particular order; go ahead and write
+(and test) the easy parts first. If you are stalled on any particular
+part, you can postpone the development of tricky cases by stubbing
+them out with exceptions.
+
+TESTING
+
+(As before) the unit testing infrastructure (check.sml) is provided to
+assist you. You will not be evaluated on the number or quality of your
+tests. These tools are provided for your benefit.
+
+SUBMISSION
+
+Please submit all files in a directory hw3 in your repository by
+11:59pm, Monday 4/24. Please submit all of the files named in this
+README; you will not need any others.
